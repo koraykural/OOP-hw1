@@ -88,34 +88,38 @@ void OrderList::takeOrder()
     cout << endl << "Number of pizzas you want: ";
     cin >> amount;
 
-    // Create pizza array with size 'amount'
+    // Create pizza vector with size 'amount'
     MyVector<Pizza> pizza_arr;
 
     for (int i = 0; i < amount; i++)
     {
         Pizza this_pizza(selected_size, selected_crust, selected_pizza);
 
-        // Ask which ingredients to remove
-        cout << "Enter the index of ingredient(s) you want to remove from the " << (i+1) << "th pizza." << endl;
-        this_pizza.print_ingredient_list(selected_pizza);
-        cout << "0: Save and continue" << endl;
-
-        // Get choices and remove
-        while(true)
+        // Remove some ingredients
+        if(i != 0)
         {
-            int choice;
-            cin >> choice;
+            cout << "Enter the index of ingredient(s) you want to remove from the " << (i+1) << "th pizza." << endl;
+            this_pizza.print_ingredient_list(selected_pizza);
+            cout << "0: Save and continue" << endl;
 
-            if(choice > 0 && choice < 7)
+            while(true)
             {
-                int index = choice - 1;
-                this_pizza.remove_ingredient(index);
+                int choice;
+                cin >> choice;
+
+                if(choice > 0 && choice < 7)
+                {
+                    int index = choice - 1;
+                    this_pizza.remove_ingredient(index);
+                }
+                else if(choice == 0)
+                    break;
+                else
+                    cout << "Invalid choice!" << endl;
             }
-            else if(choice == 0)
-                break;
-            else
-                cout << "Invalid choice!" << endl;
         }
+
+        // Add pizza to vector
         pizza_arr.push(this_pizza);
     }
 
