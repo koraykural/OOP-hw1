@@ -1,5 +1,5 @@
 - compile:
-    run: g++ pizza.cpp -o pizza.o
+    run: g++ main.cpp OrderList.cpp Order.cpp Pizza.cpp -o pizza.o
     points: 10
 
 - case_1:

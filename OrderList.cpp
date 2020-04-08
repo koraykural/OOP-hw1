@@ -4,7 +4,7 @@
 
 using namespace std;
 
-OrderList::OrderList(/* args */)
+OrderList::OrderList()
 {
     num_of_orders = 0;
     head = NULL;
@@ -16,8 +16,8 @@ OrderList::~OrderList()
     while(ptr)
     {
         head = ptr;
-        delete head;
         ptr = ptr->next;
+        delete head;
     }
 }
 
@@ -175,7 +175,7 @@ void OrderList::takeOrder()
 
     // Add new order to the list
     Order *ptr = head;
-    if(head == NULL)
+    if(num_of_orders == 0)
     {
         head = order_node;
         num_of_orders = 1;
@@ -187,7 +187,6 @@ void OrderList::takeOrder()
         ptr->next = order_node;
         num_of_orders++;
     }
-    return;
 }
 
 void OrderList::listOrders()
@@ -201,7 +200,6 @@ void OrderList::listOrders()
 
     if(!head)
         cout << "There is no order" << endl;
-    return;
 }
 
 void OrderList::deliverOrders()
@@ -235,14 +233,39 @@ void OrderList::deliverOrders()
 
     // Ask for pomotion code
     string promotion_code;
-    cout << "Do you have a promotion code? (y/N): ";
-    getline(cin, promotion_code);
-    if(promotion_code == "I am a student")
-        price = price * 0.9;
+    char does_have_code;
+    cout << "Do you have a promotion code? (y/n): ";
+    cin >> does_have_code;
+
+    if(does_have_code == 'y') {
+        cout << "Enter the promotion code." << endl;
+        cin >> promotion_code; 
+        cout << promotion_code << endl;
+        if(promotion_code == "I am a student")
+            price = price * 0.9;
+        else
+            cout << "Sorry but this code is invalid" << endl;
+    }
+    else if(does_have_code == 'n') {
+    }
+    else {
+        cout << "Invalid choice" << endl;
+    }
+
     cout << "Final price: " << price << endl;
 
     // Arrange nodes in the list
-    before_ptr->next = ptr->next;
+    if(num_of_orders == 1) {
+        head = NULL;
+    }
+    else if(ptr == head) {
+        head = ptr->next;
+    }
+    else {
+        before_ptr->next = ptr->next;
+    }
+
+    num_of_orders--;
     delete ptr;
 
     cout << "Order is delivered successfully" << endl;
