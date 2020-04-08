@@ -1,3 +1,8 @@
+/*
+    author: Bekir Koray Kural
+    id:     150170053
+    date:   08/04/2020
+*/
 #include <string>
 #define INGREDIENTS_SIZE 6
 
