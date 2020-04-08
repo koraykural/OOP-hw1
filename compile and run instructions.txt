@@ -1,0 +1,8 @@
+compile:
+g++ -c main.cpp OrderList.cpp Order.cpp Pizza.cpp
+
+link:
+g++ -o final main.o OrderList.o Order.o Pizza.o
+
+run:
+./final

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Order::Order(string customer_name, MyVector<Pizza> incoming_pizzas)
+Order::Order(string customer_name, MyVector<Pizza> &incoming_pizzas)
 {
     customer = customer_name;
     pizzas = incoming_pizzas;
@@ -14,7 +14,7 @@ Order::Order(string customer_name, MyVector<Pizza> incoming_pizzas)
     total_price = pizzas.size() * pizzas.get(0).getPrice();
 }
 
-Order::Order(string customer_name, MyVector<Pizza> incoming_pizzas, MyVector<int> incoming_drinks)
+Order::Order(string customer_name, MyVector<Pizza> &incoming_pizzas, MyVector<int> &incoming_drinks)
 {
     customer = customer_name;
     pizzas = incoming_pizzas;

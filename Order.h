@@ -13,8 +13,8 @@ private:
     float total_price;
 public:
     Order *next;
-    Order(string customer_name, MyVector<Pizza> pizzas);
-    Order(string customer_name, MyVector<Pizza> pizzas, MyVector<int> drinks);
+    Order(string customer_name, MyVector<Pizza> &pizzas);
+    Order(string customer_name, MyVector<Pizza> &pizzas, MyVector<int> &drinks);
     void printOrder();
     string getCustomer();
     float getPrice();

@@ -40,6 +40,7 @@ void OrderList::takeOrder()
         {
         case 0:
             return;
+            break;
         case 1:
         case 2:
         case 3:
@@ -142,6 +143,7 @@ void OrderList::takeOrder()
         switch (drink_choice)
         {
         case 0:
+        case -1:
             drink_input = false;
             break;
         case 1:
@@ -205,6 +207,10 @@ void OrderList::listOrders()
 void OrderList::deliverOrders()
 {
     listOrders();
+    if(num_of_orders == 0)
+    {
+        return;
+    }
 
     // Learn the customer name of the order which will be delivered
     cout << endl << "Enter the owner name of the order you want to be delivered: ";
@@ -238,9 +244,9 @@ void OrderList::deliverOrders()
     cin >> does_have_code;
 
     if(does_have_code == 'y') {
+        cin.ignore();
         cout << "Enter the promotion code." << endl;
-        cin >> promotion_code; 
-        cout << promotion_code << endl;
+        getline(cin, promotion_code);
         if(promotion_code == "I am a student")
             price = price * 0.9;
         else

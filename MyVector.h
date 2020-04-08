@@ -10,7 +10,7 @@ private:
     int capacity;
 public:
     MyVector(/* args */);
-    //MyVector(const MyVector &old);
+    MyVector(const MyVector &);
     ~MyVector();
     void push(T data);
     T get(int index);
@@ -24,20 +24,19 @@ template <class T> MyVector<T>::MyVector()
     arr = new T[1];
 }
 
-// template <class T> MyVector<T>::MyVector(const MyVector &old)
-// {
-//     current_size = old.current_size;
-//     capacity = old.capacity;
+template <class T> MyVector<T>::MyVector(const MyVector &old)
+{
+    current_size = old.current_size;
+    capacity = old.capacity;
 
-//     // Copy old array
-//     delete [] arr;
-//     arr = new T[capacity];
-//     for (int i = 0; i < old.current_size; i++)
-//     {
-//         arr[i] = old.arr[i];
-//     }
-//     cout << "Copy constructor" << endl;
-// }
+    // Copy old array
+    delete [] arr;
+    arr = new T[capacity];
+    for (int i = 0; i < current_size; i++)
+    {
+        arr[i] = old.arr[i];
+    }
+}
 
 template <class T> MyVector<T>::~MyVector()
 {
